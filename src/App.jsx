@@ -6,18 +6,21 @@ import Batmans from './batsman';
 import Users from './users';
 import Friends from './friends';
 import { Suspense } from 'react';
+import Todos from './todos';
+
+// // API fetch
+// const commentdata = fetch("https://jsonplaceholder.typicode.com/posts")
+// .then((res) => res.json())
 
 // API fetch
-const commentdata = fetch("https://jsonplaceholder.typicode.com/posts")
-.then((res) => res.json())
 
-// API fetch
+// const friendsData = fetch("https://jsonplaceholder.typicode.com/posts")
+// .then((res) => res.json());
+// console.log(friendsData);
 
-const friendsData = async() => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users")
-  return res;
-}
 
+const todosData = fetch("https://jsonplaceholder.typicode.com/todos").then(res => res.json())
+// console.log(todosData);
 
     
 
@@ -25,7 +28,7 @@ const friendsData = async() => {
 
 function App() {
 
-  const friendsmassege = friendsData();
+  // const friendsmassege = friendsData();
 
   
   // event handaler in react
@@ -45,15 +48,19 @@ function App() {
 
      <h1> Total Set Count </h1>
 
+     <Suspense fallback={<h2>Todos data comming.....</h2>}>
+      <Todos todosData={todosData}></Todos>
+     </Suspense>
+
     <Count1></Count1>
 
     {/* <Suspense fallback={<h2>Loading for await.....</h2>}>
       <Users fetch={commentdata}></Users>
     </Suspense> */}
 
-    <Suspense fallback={<h2> Friends Are Comming Soon....</h2>}>
-      <Friends friendsmassege={friendsmassege}></Friends>
-    </Suspense>
+    {/* <Suspense fallback={<h2> Friends Are Comming Soon....</h2>}>
+      <Friends friendsData={friendsData }></Friends>
+    </Suspense> */}
 
 
 
@@ -82,6 +89,8 @@ function App() {
      <Count></Count>
 
      <Batmans></Batmans>
+
+     
      
     </>
   )

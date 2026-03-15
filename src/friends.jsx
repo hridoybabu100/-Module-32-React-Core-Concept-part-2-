@@ -1,14 +1,19 @@
-import { use } from "react";
+import { use } from "react"
 
-export default function Friends ({friendsmassege}){
+import Friend from './friend';
+export default function Friends ({ friendsData }){
 
-    const friends = use(friendsmassege);
-    console.log(friends);
+ const frineds = use(friendsData);
+ console.log(frineds);
+ 
     
 
     return(
         <div className="card">
-            <h1>Total Friends : {friends.length}</h1>
+            <h1>Total Friends : {frineds.length} </h1>
+            {
+              frineds.map(friend => <Friend friend={friend}></Friend>)  
+            }
         </div>
     )
 }
